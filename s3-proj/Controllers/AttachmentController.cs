@@ -6,24 +6,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace s3_proj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WeaponController : ControllerBase
+    public class AttachmentController : ControllerBase
     {
         private readonly DataContext dc;
-        public WeaponController(DataContext dc)
+        public AttachmentController(DataContext dc)
         {
             this.dc = dc;
         }
 
         //GET api/weapon
         [HttpGet]
-        public IActionResult GetWeapons()
+        public IActionResult GetAttachments()
         {
-            var weapons = dc.Weapon.ToList();
-            return Ok(weapons);
+            var attachments = dc.Attachment.ToList();
+            return Ok(attachments);
         }
     }
 }

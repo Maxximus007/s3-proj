@@ -10,20 +10,20 @@ namespace s3_proj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WeaponController : ControllerBase
+    public class GearController : ControllerBase
     {
         private readonly DataContext dc;
-        public WeaponController(DataContext dc)
+        public GearController(DataContext dc)
         {
             this.dc = dc;
         }
 
         //GET api/weapon
         [HttpGet]
-        public IActionResult GetWeapons()
+        public IActionResult GetGear()
         {
-            var weapons = dc.Weapon.ToList();
-            return Ok(weapons);
+            var gear = dc.Gear.ToList();
+            return Ok(gear);
         }
     }
 }
