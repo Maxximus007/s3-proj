@@ -60,6 +60,7 @@ namespace s3_proj.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: true),

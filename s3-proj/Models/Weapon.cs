@@ -9,6 +9,7 @@ namespace s3_proj.Models
     {
         public int ID { get; set; }
         public string name { get; set; }
+        public string description { get; set; }
         public string model { get; set; }             
         public string brand { get; set; }
         public string type { get; set; }

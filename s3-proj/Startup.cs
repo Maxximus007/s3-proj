@@ -22,6 +22,7 @@ namespace s3_proj
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -69,6 +70,15 @@ namespace s3_proj
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseWebSockets();
+
+            var webSocketOptions = new WebSocketOptions()
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+            };
+
+            app.UseWebSockets(webSocketOptions);
 
             app.UseAuthorization();
 

@@ -9,7 +9,7 @@ using s3_proj.Data;
 namespace s3_proj.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211019111353_InitialDB")]
+    [Migration("20211019124157_InitialDB")]
     partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,9 @@ namespace s3_proj.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fireMode")

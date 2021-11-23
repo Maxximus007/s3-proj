@@ -127,6 +127,9 @@ namespace s3_proj.Migrations
                     b.Property<string>("color")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("fireMode")
                         .HasColumnType("nvarchar(max)");
 
