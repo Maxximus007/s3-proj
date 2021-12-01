@@ -35,5 +35,30 @@ namespace s3_proj.Controllers
 
             return Ok();
         }
+        [HttpDelete]
+        [Route("/[controller]/delete/ByID")]
+        public IActionResult DeleteGear(int id)
+        {
+            try
+            {
+                Gear gear = dc.Gear.FirstOrDefault(e => e.ID == id);
+                if (gear == null)
+                {
+                    return NotFound("ID was not found");
+                }
+                else
+                {
+                    dc.Gear.Remove(gear);
+                    dc.SaveChanges();
+                    return Ok(gear.name + " was succesfully deleted");
+                }
+
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+
+        }
     }
 }

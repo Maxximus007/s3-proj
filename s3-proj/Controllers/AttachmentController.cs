@@ -36,5 +36,30 @@ namespace s3_proj.Controllers
 
             return Ok();
         }
+        [HttpDelete]
+        [Route("/[controller]/delete/ByID")]
+        public IActionResult DeleteAttachment(int id)
+        {
+            try
+            {
+                Attachment attachment = dc.Attachment.FirstOrDefault(e => e.ID == id);
+                if (attachment == null)
+                {
+                    return NotFound("ID was not found");
+                }
+                else
+                {
+                    dc.Attachment.Remove(attachment);
+                    dc.SaveChanges();
+                    return Ok(attachment.name + " was succesfully deleted");
+                }
+
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+
+        }
     }
 }

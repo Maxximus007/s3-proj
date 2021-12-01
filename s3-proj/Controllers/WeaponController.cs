@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using s3_proj.Data;
 using s3_proj.Models;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,8 +34,14 @@ namespace s3_proj.Controllers
         {
             dc.Weapon.Add(weapon);
             dc.SaveChanges();
+            dynamic data = new ExpandoObject();
+            data.name = weapon.name;
+            data.ID = weapon.ID;
 
-            return Ok();
+            // convert to JSON
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+
+            return Ok(json);
         }
         [Route("/[controller]/Get/ByID")]
         [HttpGet]
@@ -44,14 +52,29 @@ namespace s3_proj.Controllers
             return Ok(weapon);
         }
         [HttpDelete]
-        [Route("/[controller]/delete/{id}")]
+        [Route("/[controller]/delete/ByID")]
         public IActionResult DeleteWeapon(int id)
         {
-            Weapon weapon =  dc.Weapon.FirstOrDefault(e => e.ID == id);
-
-            dc.Weapon.Remove(weapon);
-            dc.SaveChanges();
-            return NoContent();
+            try
+            {
+                Weapon weapon = dc.Weapon.FirstOrDefault(e => e.ID == id);
+                if(weapon == null)
+                {
+                    return NotFound("{\"error\":\"ID was not found\"}");
+                }
+                else
+                {
+                    dc.Weapon.Remove(weapon);
+                    dc.SaveChanges();
+                    return Ok(weapon.name + " was succesfully deleted");
+                }               
+                
+            }
+                catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        
         }
     }
 }
