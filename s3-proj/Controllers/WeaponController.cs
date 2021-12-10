@@ -43,6 +43,15 @@ namespace s3_proj.Controllers
 
             return Ok(json);
         }
+        [Route("/[controller]/Edit")]
+        [HttpPost]
+        public IActionResult EditWeapon(Weapon weapon)
+        {
+            dc.Update(weapon);
+            dc.SaveChanges();
+
+            return Ok(weapon);
+        }
         [Route("/[controller]/Get/ByID")]
         [HttpGet]
         public IActionResult GetWeaponByID(int id)
