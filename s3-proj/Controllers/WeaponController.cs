@@ -44,13 +44,19 @@ namespace s3_proj.Controllers
             return Ok(json);
         }
         [Route("/[controller]/Edit")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult EditWeapon(Weapon weapon)
         {
             dc.Update(weapon);
             dc.SaveChanges();
 
-            return Ok(weapon);
+            dynamic data = new ExpandoObject();
+            data.name = weapon.name;
+            data.ID = weapon.ID;
+
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+
+            return Ok(json);
         }
         [Route("/[controller]/Get/ByID")]
         [HttpGet]

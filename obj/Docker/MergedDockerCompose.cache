@@ -1,0 +1,26 @@
+services:
+  mssql:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Gunnoe123
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+    - published: 1450
+      target: 1433
+    volumes:
+    - C:\Users\axelx\apps\mssql\data:/var/lib/mssqlql/data:rw
+  s3-proj:
+    build:
+      context: C:\Users\axelx\source\repos\s3-proj
+      dockerfile: s3-proj/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: s3proj
+    ports:
+    - target: 80
+    - target: 443
+    volumes:
+    - C:\Users\axelx\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\axelx\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'
