@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "a35b1bd2-ec7f-4e6c-95be-39ab13c1ea7d",
+		"name": "Article",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Weapon",
+			"item": [
+				{
+					"name": "All weapons",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Weapon",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Weapon/Get/ByID?id=1",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon",
+								"Get",
+								"ByID"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete weapon (wrong ID)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.notFound;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Weapon/delete/ByID?id=0",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon",
+								"delete",
+								"ByID"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create weapon",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"WeaponID\", jsonData.ID);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"testgun\",\r\n  \"description\": \"string\",\r\n  \"model\": \"string\",\r\n  \"brand\": \"string\",\r\n  \"type\": \"string\",\r\n  \"price\": 0,\r\n  \"magSize\": 0,\r\n  \"caliber\": \"string\",\r\n  \"stock\": 0,\r\n  \"fireMode\": \"string\",\r\n  \"rpm\": 0,\r\n  \"weightInGram\": 0,\r\n  \"heightInMm\": 0,\r\n  \"widthInMm\": 0,\r\n  \"color\": \"string\",\r\n  \"imgURL\": \"string\",\r\n  \"videoURL\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_URL}}/Weapon/Create",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit weapon name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"WeaponName must be eqaul to jsonData.name\", () => {    \r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(jsonData.name);    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":{{WeaponID}}\r\n  \"name\": {{WeaponName}},\r\n  \"description\": \"string\",\r\n  \"model\": \"string\",\r\n  \"brand\": \"string\",\r\n  \"type\": \"string\",\r\n  \"price\": 0,\r\n  \"magSize\": 0,\r\n  \"caliber\": \"string\",\r\n  \"stock\": 0,\r\n  \"fireMode\": \"string\",\r\n  \"rpm\": 0,\r\n  \"weightInGram\": 0,\r\n  \"heightInMm\": 0,\r\n  \"widthInMm\": 0,\r\n  \"color\": \"string\",\r\n  \"imgURL\": \"string\",\r\n  \"videoURL\": \"string\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Base_URL}}/Weapon/Edit",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon",
+								"Edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete weapon (that we created)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Weapon/delete/ByID?id={{WeaponID}}",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Weapon",
+								"delete",
+								"ByID"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{WeaponID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attachment",
+			"item": [
+				{
+					"name": "All attachments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Attachment",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Attachment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gear",
+			"item": [
+				{
+					"name": "All gear",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Base_URL}}/Gear",
+							"host": [
+								"{{Base_URL}}"
+							],
+							"path": [
+								"Gear"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
