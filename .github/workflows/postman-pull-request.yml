@@ -1,6 +1,10 @@
 name: postman-pull-request
-on: [push, pull_request] // this action runs on each new push 
-                         // and pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
