@@ -6,13 +6,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  build:
+  Newman:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
-        mongodb-version: [4.2]
-  steps:
+
+    steps:
     - name: Newman Action
       uses: matt-ball/newman-action@v1.0.4
       with: 
