@@ -32,9 +32,7 @@ jobs:
     - name: install ef tool
       run: dotnet tool install --global dotnet-ef
     - name: update database
-      run: |
-        dir
-        dotnet ef database update --connection "Data Source=localhost,1450; User Id='SA'; Password='Gunnoe123'" --no-build
+
 
   SonarCloud:
     name: SonarCloud
