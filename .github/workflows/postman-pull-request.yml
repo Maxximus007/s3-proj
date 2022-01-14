@@ -13,7 +13,7 @@ jobs:
     - name: Newman Action
       uses: matt-ball/newman-action@v1.0.4
       with: 
-        collection: https://raw.githubusercontent.com/Axelpieterman/s3-proj/blob/main/tests/Article.postman_collection.json
+        collection: https://raw.githubusercontent.com/Axelpieterman/s3-proj/main/tests/Article.postman_collection.json
        
         environment: https://raw.githubusercontent.com/Axelpieterman/s3-proj/main/tests/Gunnoe-env.json
 
