@@ -31,7 +31,7 @@ jobs:
       run: docker logs msssql
     - name: update database
       run: dotnet-ef database update --no-build
-      working-directory: ./Migrations
+      working-directory: Migrations
 
   SonarCloud:
     name: SonarCloud
