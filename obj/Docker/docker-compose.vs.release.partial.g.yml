@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   s3-proj:
-    container_name: s3-proj_1
+    container_name: s3-proj
     build:
       labels:
         com.microsoft.created-by: "visual-studio"

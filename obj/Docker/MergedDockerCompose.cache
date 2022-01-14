@@ -8,7 +8,7 @@ services:
     - published: 1450
       target: 1433
     volumes:
-    - C:\Users\axelx\apps\mssql\data:/var/lib/mssqlql/data:rw
+    - mssqldata:/var/lib/mssqlql/data:rw
   s3-proj:
     build:
       context: C:\Users\axelx\source\repos\s3-proj
@@ -24,3 +24,7 @@ services:
     - C:\Users\axelx\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
     - C:\Users\axelx\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
 version: '3.4'
+volumes:
+  mssqldata:
+    external: true
+    name: mssqldata

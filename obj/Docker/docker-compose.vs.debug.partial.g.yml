@@ -3,7 +3,7 @@ version: '3.4'
 services:
   s3-proj:
     image: s3proj:dev
-    container_name: s3-proj_1
+    container_name: s3-proj
     build:
       target: base
       labels:

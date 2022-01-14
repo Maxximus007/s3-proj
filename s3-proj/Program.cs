@@ -22,6 +22,7 @@ namespace s3_proj
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseUrls("http://localhost:*/");
                 });
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace s3_proj.Controllers
 {
-    
+    /*
     [ApiController]
     [Route("[Controller]")]
     public class WebsocketController : ControllerBase
@@ -48,7 +48,7 @@ namespace s3_proj.Controllers
             var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
             var serverMsg = Encoding.UTF8.GetBytes($"Hello");
             await webSocket.SendAsync(serverMsg, 0, serverMsg.Length), result.MessageType, result.EndOfMessage, CancellationToken.None);
-        }*/
+        }
 
         private async Task SendAdvertisment(WebSocket webSocket)
         {
@@ -79,5 +79,6 @@ namespace s3_proj.Controllers
                 System.Threading.Thread.Sleep(5000);
             }
         }
-    }
+    }*/
+
 }
