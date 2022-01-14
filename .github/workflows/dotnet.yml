@@ -90,6 +90,7 @@ jobs:
     # Install the newman command line utility and also install the html extra reporter
     - name: Install newman
       run: npm install -g newman
+    - name: Install newman reporter
       run: npm install -g newman-reporter-htmlextra
       
 
