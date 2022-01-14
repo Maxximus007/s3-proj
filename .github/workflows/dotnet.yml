@@ -30,7 +30,7 @@ jobs:
     - name: Dump mssql docker logs after tests
       run: docker logs msssql
     - name: update database
-      run: dotnet-ef database update --no-build
+      run: dotnet -ef database update --no-build
 
   SonarCloud:
     name: SonarCloud
