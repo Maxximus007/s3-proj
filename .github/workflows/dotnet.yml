@@ -20,7 +20,7 @@ jobs:
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
 
-  build:
+  SonarCloud:
     name: SonarCloud
     runs-on: windows-latest
     steps:
