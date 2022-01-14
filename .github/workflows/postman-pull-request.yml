@@ -14,5 +14,6 @@ jobs:
       uses: matt-ball/newman-action@v1.0.4
       with: 
         collection: https://github.com/Axelpieterman/s3-proj/blob/main/tests/Article.postman_collection.json
-        environment: https://github.com/Axelpieterman/s3-proj/blob/main/tests/Gunnoe-env.json
+        apiKey: PMAK-61e1a68a8a933d3ac22b3e62-9d7a1f112b2ece44c6e61e99b8546af5db
+        environment: 5559a2f1-862f-4142-922f-f21f583292d3
 
