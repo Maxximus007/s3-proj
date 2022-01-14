@@ -32,7 +32,7 @@ jobs:
     - name: install ef tool
       run: dotnet tool install --global dotnet-ef
     - name: update database
-      run: dotnet -ef database update --no-build
+      run: dotnet ef database update --no-build
 
   SonarCloud:
     name: SonarCloud
