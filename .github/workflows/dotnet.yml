@@ -20,6 +20,12 @@ jobs:
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
 
+  Mssql:
+    - name: Start Docker for MSSSql
+      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name msssql -d mcr.microsoft.com/mssql/server:2019-latest-ubuntu
+    - name: Dump mssql docker logs after tests
+      run: docker logs msssql
+
   SonarCloud:
     name: SonarCloud
     runs-on: windows-latest
@@ -60,7 +66,4 @@ jobs:
           dotnet build s3-proj.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
-      - name: Start Docker for MSSSql
-        run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=sqlPw3$secure' -e 'MSSQL_PID=Developer' -p 1433:1433 --name msssql -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu
-      - name: Dump mssql docker logs after tests
-        run: docker logs msssql
+      
