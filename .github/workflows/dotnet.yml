@@ -33,7 +33,7 @@ jobs:
       run: dotnet tool install --global dotnet-ef
     - name: update database
       run: |
-        cd ./Migrations
+        dir
         dotnet ef database update --connection "Data Source=localhost,1450; User Id='SA'; Password='Gunnoe123'" --no-build
 
   SonarCloud:
@@ -85,7 +85,6 @@ jobs:
       with: 
         collection: https://raw.githubusercontent.com/Axelpieterman/s3-proj/main/tests/Article.postman_collection.json
         environment: https://raw.githubusercontent.com/Axelpieterman/s3-proj/main/tests/Gunnoe-env.json
-        reporters: '["emojitrain"]'
         delayRequest: 5000
 
 
