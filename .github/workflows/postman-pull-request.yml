@@ -1,0 +1,21 @@
+name: postman-pull-request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+        mongodb-version: [4.2]
+  steps:
+    - name: Newman Action
+      uses: matt-ball/newman-action@v1.0.4
+      with: 
+        collection: ./tests/Article.postman_collection.json
+        environment: ./tests/Gunnoe-env.json
+
