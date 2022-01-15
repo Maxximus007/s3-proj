@@ -22,7 +22,7 @@ jobs:
     - run: |
         dotnet publish "s3-proj" -c Release -o app/publish
         COPY --from=publish app/publish .
-      entrypoint: ["dotnet", "s3-proj.dll"]
+        ENTRYPOINT ["dotnet", "s3-proj.dll"]
 
   Mssql:
     name: Build MSSQL server
