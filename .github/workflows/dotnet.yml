@@ -21,9 +21,10 @@ jobs:
     - run: dotnet test s3-proj
     - run: dotnet publish "s3-proj" -c Release -o app/publish
     - name: deploy server
-    - run: COPY --from=publish app/publish .
-    - name: Run box version
-      with:
+    - run: |
+        dotnet publish "s3-proj" -c Release -o app/publish
+        COPY --from=publish app/publish .
+       with:
         entrypoint: ["dotnet", "s3-proj.dll"]
 
   Mssql:
