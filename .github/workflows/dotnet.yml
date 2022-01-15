@@ -19,8 +19,10 @@ jobs:
         dotnet-version: 5.0.x
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
-    - run: dotnet publish "s3-proj" -c Release -o app/publish
-    - entrypoint: ["dotnet", "s3-proj.dll"]
+    - run: |
+        dotnet publish "s3-proj" -c Release -o app/publish
+        COPY --from=publish app/publish .
+      entrypoint: ["dotnet", "s3-proj.dll"]
 
   Mssql:
     name: Build MSSQL server
