@@ -19,6 +19,7 @@ jobs:
         dotnet-version: 5.0.x
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
+    - run: dotnet publish "s3-proj.csproj" -c Release -o /app/publish
 
   Mssql:
     name: Build MSSQL server
