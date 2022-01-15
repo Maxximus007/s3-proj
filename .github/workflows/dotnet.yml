@@ -24,7 +24,7 @@ jobs:
     - run: |
         dotnet publish "s3-proj" -c Release -o app/publish
         COPY --from=publish app/publish .
-       with:
+      with:
         entrypoint: ["dotnet", "s3-proj.dll"]
 
   Mssql:
