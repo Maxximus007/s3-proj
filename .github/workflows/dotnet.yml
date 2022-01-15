@@ -20,6 +20,7 @@ jobs:
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
     - run: dotnet publish "s3-proj" -c Release -o app/publish
+    - entrypoint: ["dotnet", "s3-proj.dll"]
 
   Mssql:
     name: Build MSSQL server
