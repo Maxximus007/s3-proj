@@ -20,18 +20,12 @@ jobs:
     - run: dotnet build s3-proj.sln
     - run: dotnet test s3-proj
     - run: dotnet publish "s3-proj" -c Release -o app/publish
-
-  Deploy:
-    name: deploy server
-
-
-    steps:
-    - uses: actions/checkout@v2
+    - name: deploy server
     - run: COPY --from=publish app/publish .
     - name: Run box version
-      uses: docker://foundeo/minibox:latest
       with:
         entrypoint: ["dotnet", "s3-proj.dll"]
+
   Mssql:
     name: Build MSSQL server
     runs-on: ubuntu-latest
