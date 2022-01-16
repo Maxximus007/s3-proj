@@ -27,6 +27,7 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
           
   Newman:
+    needs: docker
     runs-on: ubuntu-latest
     steps:
     - name: Docker image start
