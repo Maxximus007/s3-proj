@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Docker image start
-      run: docker run -d -p 5000:5000 --name api --net host ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
+      run: docker run -d -p 5001:5001 --name api --net host ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
 #    - name: Start Docker for MSSSql
 #      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name mssql -net host -d mcr.microsoft.com/mssql/server:2019-latest
 #    - name: Dump mssql docker logs after tests
@@ -24,8 +24,8 @@ jobs:
       run: |
         docker ps -a
     - name: Check the site
-        uses = "nerdify/ping-action@1.0.0"
-        secrets = ["http://localhost:5001"]
+      run: |
+        ping -c 10 http://localhost:5001/
     - name: Newman Action
       uses: matt-ball/newman-action@v1.0.4
       with: 
