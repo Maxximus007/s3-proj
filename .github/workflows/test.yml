@@ -42,7 +42,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
           
   SonarCloud:
-  needs: build
+    needs: build
     name: SonarCloud
     runs-on: windows-latest
     steps:
