@@ -22,6 +22,11 @@ jobs:
       run: dotnet tool install --global dotnet-ef
     - name: Check running containers
       run: |
+        docker network create myNetwork
+        docker network connect myNetwork api
+        docker network connect myNetwork mssql
+        docker network inspect myNetwork
+        docker exec -ti api ping mssql
         docker ps -a
         ip addr show
     - name: Newman Action
