@@ -26,7 +26,6 @@ jobs:
         docker network connect myNetwork api
         docker network connect myNetwork mssql
         docker network inspect myNetwork
-        docker exec -ti api ping mssql
         docker ps -a
         ip addr show
     - name: Newman Action
@@ -34,4 +33,4 @@ jobs:
       with: 
         collection: https://raw.githubusercontent.com/Maxximus007/s3-proj/main/tests/Article.postman_collection.json
         environment: https://raw.githubusercontent.com/Maxximus007/s3-proj/main/tests/Gunnoe-env.json
-        delayRequest: 5000
+        delayRequest: 10000
