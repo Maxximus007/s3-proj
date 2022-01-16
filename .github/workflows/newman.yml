@@ -16,10 +16,10 @@ jobs:
       run: docker run -d -p 5000:5000 --name api ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
     - name: Start Docker for MSSSql
       run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
-    - name: Dump mssql docker logs after tests
-      run: docker logs mssql
-    - name: install ef tool
-      run: dotnet tool install --global dotnet-ef
+#    - name: Dump mssql docker logs after tests
+#      run: docker logs mssql
+#    - name: install ef tool
+#      run: dotnet tool install --global dotnet-ef
     - name: Check running containers
       run: |
         docker network create myNetwork
@@ -27,7 +27,6 @@ jobs:
         docker network connect myNetwork mssql
         docker network inspect myNetwork
         docker ps -a
-        ip addr show
     - name: Newman Action
       uses: matt-ball/newman-action@v1.0.4
       with: 
