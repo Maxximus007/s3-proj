@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "Base_URL",
-			"value": "\nhttp://172.18.0.1:5000",
+			"value": "\nhttp://api:5000",
 			"type": "default",
 			"enabled": true
 		},
