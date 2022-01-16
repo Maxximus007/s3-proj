@@ -31,13 +31,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Docker image start
-      run: docker run -d --name api --net host ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
+      run: docker run -p 5000:5000 -d --name api ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
     - name: Start Docker for MSSSql
-      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name mssql --net host -d mcr.microsoft.com/mssql/server:2019-latest
+      run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name mssql -d mcr.microsoft.com/mssql/server:2019-latest
     - name: Dump mssql docker logs after tests
       run: docker logs mssql
     - name: install ef tool
       run: dotnet tool install --global dotnet-ef
+    - name: Run migrations
+      run: dotnet ef database update s3-proj/Migrations/20211019124157_InitialDB.cs
     - name: Check running containers
       run: |
         docker ps -a
