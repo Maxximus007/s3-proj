@@ -24,11 +24,8 @@ jobs:
       run: |
         docker ps -a
     - name: Check the site
-      id: hello
-      uses: srt32/uptime@master
-      with:
-        url-to-hit: "http://localhost:5001"
-        expected-statuses: "200,301"
+        uses = "nerdify/ping-action@1.0.0"
+        secrets = ["http://localhost:5001"]
     - name: Newman Action
       uses: matt-ball/newman-action@v1.0.4
       with: 
