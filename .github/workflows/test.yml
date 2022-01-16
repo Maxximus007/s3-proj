@@ -88,7 +88,7 @@ jobs:
 
     steps:
     - name: Docker image start
-      run: docker run -d --name api ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
+      run: docker run -d -p 44314:5000 --name api ${{ secrets.DOCKER_USERNAME }}/s3-proj:latest
     - name: Start Docker for MSSSql
       run: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Gunnoe123' -e 'MSSQL_PID=Developer' -p 1450:1433 --name msssql -d mcr.microsoft.com/mssql/server:2019-latest
     - name: Dump mssql docker logs after tests
